@@ -25,5 +25,17 @@ namespace CatalogCDs.Controllers
                 return db.Albums.ToList<Album>();
             }
         }
+        
+        public ActionResult AddOrEdit(int id = 0)
+        {
+            Album album = new Album();
+            return View(album);
+        }
+
+        [HttpPost]
+        public ActionResult addoredit()
+        {
+            return View();
+        }
     }
 }

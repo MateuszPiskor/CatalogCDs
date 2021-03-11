@@ -153,6 +153,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AppFiles\Images\eminem.jpg" />
+    <Content Include="AppFiles\Images\empty.jpg" />
+    <Content Include="AppFiles\Images\metalica.jpeg" />
+    <Content Include="AppFiles\Images\redhot.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -204,6 +208,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Album\Index.cshtml" />
     <Content Include="Views\Album\GetAll.cshtml" />
+    <Content Include="Views\Album\AddOrEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
