@@ -19,5 +19,6 @@ namespace CatalogCDs.Models
         public string Genre { get; set; }
         public Nullable<int> Year { get; set; }
         public string Artist { get; set; }
+        public string ImagePath { get; set; }
     }
 }
