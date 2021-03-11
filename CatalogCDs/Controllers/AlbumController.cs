@@ -1,7 +1,6 @@
-﻿using System;
+﻿using CatalogCDs.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace CatalogCDs.Controllers
@@ -12,6 +11,19 @@ namespace CatalogCDs.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult GetAll()
+        {
+            return View(GetAllAlbums());
+        }
+
+        private IEnumerable<Album> GetAllAlbums()
+        {
+            using(DBModel db = new DBModel())
+            {
+                return db.Albums.ToList<Album>();
+            }
         }
     }
 }
