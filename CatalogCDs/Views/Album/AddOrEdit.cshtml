@@ -49,7 +49,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
+                    <input type="submit" value="submit" class="btn btn-default" />
                 </div>
             </div>
         </div>
@@ -60,7 +60,7 @@
             @Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <img src="@Url.Content(Model.ImagePath)" style="margin:10px" height="200" width="200" id="imageView"/>
-                <input type="file" name="ImageUpload"  accept="image/jpeq, image/png" />
+                <input type="file" name="ImageUpload"  accept="image/jpeq, image/png" onchange="ShowPreviewOfImage(this, document.getElementById('imageView'))"/>
             </div>
         </div>
         </div>

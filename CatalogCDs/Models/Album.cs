@@ -11,6 +11,7 @@ namespace CatalogCDs.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Web;
 
@@ -21,6 +22,7 @@ namespace CatalogCDs.Models
         public string Genre { get; set; }
         public Nullable<int> Year { get; set; }
         public string Artist { get; set; }
+        [DisplayName("Image")]
         public string ImagePath { get; set; }
 
         [NotMapped]
