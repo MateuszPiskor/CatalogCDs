@@ -47,5 +47,18 @@ function refreshAfterAddAlbum(resetUrl, showViewTab) {
             if (showViewTab)
                 $('ul.nav.nav-tabs a:eq(0)').tab('show');
         }
-    })
+    });
+}
+
+function Edit(editUrl) {
+    $.ajax({
+        type: 'GET',
+        url: editUrl,
+        success: function (response) {
+            $("#secondTab").html(response);
+            $('ul.nav.nav-tabs a:eq(1)').html('Edit');
+            $('ul.nav.nav-tabs a:eq(1)').tab('show');
+        }
+
+    });
 }

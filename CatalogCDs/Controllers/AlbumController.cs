@@ -1,6 +1,7 @@
 ﻿using CatalogCDs.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
@@ -31,6 +32,13 @@ namespace CatalogCDs.Controllers
         public ActionResult AddOrEdit(int id = 0)
         {
             Album album = new Album();
+            if (id != 0)
+            {
+                using (DBModel db = new DBModel())
+                {
+                    album = db.Albums.Where(x => x.AlbumID == id).FirstOrDefault<Album>() ;
+                }
+            }
             return View(album);
         }
 
@@ -50,9 +58,16 @@ namespace CatalogCDs.Controllers
                 }
                 using (DBModel db = new DBModel())
                 {
-
-                    db.Albums.Add(album);
-                    db.SaveChanges();
+                    if (album.AlbumID == 0)
+                    {
+                        db.Albums.Add(album);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        db.Entry(album).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
                 }
 
                 return Json(new { success = true, html = RazorToString.RenderRazorView(this, "GetAll", GetAllAlbums()), message = "Submitted Successfully" }, JsonRequestBehavior.AllowGet);

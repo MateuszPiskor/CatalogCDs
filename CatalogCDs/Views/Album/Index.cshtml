@@ -4,12 +4,12 @@
 }
 
 <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#firstTab">View All</a></li>
-    <li><a data-toggle="tab" href="#secondTab">Add new</a></li>
+    <li><a data-toggle="tab" href="#firstTab">View All</a></li>
+    <li class="active"><a data-toggle="tab" href="#secondTab">Add new</a></li>
 </ul>
 <div class="tab-content">
-    <div id="firstTab" class="tab-pane fade in active ">@Html.Action("GetAll")</div> 
-    <div id="secondTab" class="tab-pane fade in">@Html.Action("AddOrEdit")</div> 
+    <div id="firstTab" class="tab-pane fade in">@Html.Action("GetAll")</div> 
+    <div id="secondTab" class="tab-pane fade in active">@Html.Action("AddOrEdit")</div> 
 </div>
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
