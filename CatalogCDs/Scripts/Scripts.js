@@ -18,11 +18,12 @@ function ajaxPost(form) {
             data: new FormData(form),
             success: function (response) {
                 if (response.success) {
-                    $("#firstTab").html(response.html)
+                    $("#firstTab").html(response.html);
                     refreshAfterAddAlbum($(form).attr('data-restUrl'), true);
+                    $.notify(response.message, "success");
                 }
                 else {
-
+                    $.notify(response.message, "error");
                 }
             }
         }

@@ -38,9 +38,9 @@
             @Html.DisplayFor(modelItem => item.Artist)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AlbumID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AlbumID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AlbumID })
+           <a class="btn btn-primary btn-sm"><i class="fa fa-pencil fa-lg"></i></a>
+           <a class="btn btn-danger btn-sm"><i class="fa fa-trash fa-lg"></i></a>
+
         </td>
     </tr>
 }
