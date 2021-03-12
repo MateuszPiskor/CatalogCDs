@@ -62,3 +62,22 @@ function Edit(editUrl) {
 
     });
 }
+
+function Delete(url) {
+    
+    if (confirm('Are you Sure to delete this record ? ') == true) {
+        $.ajax({
+            type: 'POST',
+            url: url,
+            success: function (response) {
+                if (respone.success) {
+                    $("#firstTab").html(response.html);
+                    $.notify(response.message, "warn");
+                }
+                else {
+                    $.notify(response.message, "error");
+                }
+            }
+        });
+    }
+}

@@ -74,9 +74,27 @@ namespace CatalogCDs.Controllers
             }
             catch (Exception ex)
             {
-
                 return Json(new { success = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+                try
+                {
+                    using (DBModel db = new DBModel())
+                    {
+                        Album album = db.Albums.Where(x => x.AlbumID == id).FirstOrDefault<Album>();
+                        db.Albums.Remove(album);
+                        db.SaveChanges();
+                    }
+                    return Json(new { success = true, html = RazorToString.RenderRazorView(this, "GetAll", GetAllAlbums()), message = "Deleted Successfully" }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
         }
     }
 }
