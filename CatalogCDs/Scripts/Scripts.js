@@ -21,6 +21,9 @@ function ajaxPost(form) {
                     $("#firstTab").html(response.html);
                     refreshAfterAddAlbum($(form).attr('data-restUrl'), true);
                     $.notify(response.message, "success");
+                    if (typeof activateTable != 'undefined' && $.isFunction(activateTable)) {
+                        activateTable();
+                    }
                 }
                 else {
                     $.notify(response.message, "error");
@@ -73,6 +76,9 @@ function Delete(url) {
                 if (respone.success) {
                     $("#firstTab").html(response.html);
                     $.notify(response.message, "warn");
+                    if (typeof activateTable != 'undefined' && $.isFunction(activateTable)) {
+                        activateTable();
+                    }
                 }
                 else {
                     $.notify(response.message, "error");

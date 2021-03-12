@@ -1,4 +1,4 @@
-﻿ 
+﻿
 @{
     ViewBag.Title = "Index";
 }
@@ -8,9 +8,24 @@
     <li class="active"><a data-toggle="tab" href="#secondTab">Add new</a></li>
 </ul>
 <div class="tab-content">
-    <div id="firstTab" class="tab-pane fade in">@Html.Action("GetAll")</div> 
-    <div id="secondTab" class="tab-pane fade in active">@Html.Action("AddOrEdit")</div> 
+    <div id="firstTab" class="tab-pane fade in">@Html.Action("GetAll")</div>
+    <div id="secondTab" class="tab-pane fade in active">@Html.Action("AddOrEdit")</div>
 </div>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
+
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
-    }
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script>
+
+    <script>
+        function activateTable() {
+            $('#AlbumTable').DataTable();
+        }
+
+        $(function () {
+            event.preventDefault();
+            activateTable();
+        });
+    </script>
+
+}
