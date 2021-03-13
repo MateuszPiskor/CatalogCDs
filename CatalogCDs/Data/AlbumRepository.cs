@@ -21,25 +21,5 @@ namespace CatalogCDs.Data
             db.Albums.Add(album);
             db.SaveChanges();
         }
-
-        public bool DeleteAlbum(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Album GetAlbum(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Album> GetAllAlbums()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Update(Album album)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
