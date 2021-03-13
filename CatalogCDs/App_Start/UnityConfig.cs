@@ -1,3 +1,4 @@
+using CatalogCDs.Data;
 using System.Web.Mvc;
 using Unity;
 using Unity.Mvc5;
@@ -8,13 +9,8 @@ namespace CatalogCDs
     {
         public static void RegisterComponents()
         {
-			var container = new UnityContainer();
-            
-            // register all your components with the container here
-            // it is NOT necessary to register your controllers
-            
-            // e.g. container.RegisterType<ITestService, TestService>();
-            
+            UnityContainer container = new UnityContainer();
+            container.RegisterType<IAlbumRepository, AlbumRepository>();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

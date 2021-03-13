@@ -142,6 +142,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
+    <Compile Include="Data\AlbumRepository.cs" />
+    <Compile Include="Data\IAlbumRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

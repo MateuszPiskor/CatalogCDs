@@ -1,4 +1,5 @@
-﻿using CatalogCDs.Models;
+﻿using CatalogCDs.Data;
+using CatalogCDs.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,6 +11,12 @@ namespace CatalogCDs.Controllers
 {
     public class AlbumController : Controller
     {
+        private readonly IAlbumRepository albumRepository;
+
+        public AlbumController(IAlbumRepository albumRepository)
+        {
+            this.albumRepository = albumRepository;
+        }
         // GET: Album
         public ActionResult Index()
         {
@@ -23,12 +30,12 @@ namespace CatalogCDs.Controllers
 
         private IEnumerable<Album> GetAllAlbums()
         {
-            using(DBModel db = new DBModel())
+            using (DBModel db = new DBModel())
             {
                 return db.Albums.ToList<Album>();
             }
         }
-        
+
         public ActionResult AddOrEdit(int id = 0)
         {
             Album album = new Album();
@@ -36,7 +43,7 @@ namespace CatalogCDs.Controllers
             {
                 using (DBModel db = new DBModel())
                 {
-                    album = db.Albums.Where(x => x.AlbumID == id).FirstOrDefault<Album>() ;
+                    album = db.Albums.Where(x => x.AlbumID == id).FirstOrDefault<Album>();
                 }
             }
             return View(album);
@@ -81,20 +88,20 @@ namespace CatalogCDs.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-                try
+            try
+            {
+                using (DBModel db = new DBModel())
                 {
-                    using (DBModel db = new DBModel())
-                    {
-                        Album album = db.Albums.Where(x => x.AlbumID == id).FirstOrDefault<Album>();
-                        db.Albums.Remove(album);
-                        db.SaveChanges();
-                    }
-                    return Json(new { success = true, html = RazorToString.RenderRazorView(this, "GetAll", GetAllAlbums()), message = "Deleted Successfully" }, JsonRequestBehavior.AllowGet);
+                    Album album = db.Albums.Where(x => x.AlbumID == id).FirstOrDefault<Album>();
+                    db.Albums.Remove(album);
+                    db.SaveChanges();
                 }
-                catch (Exception ex)
-                {
-                    return Json(new { success = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
-                }
+                return Json(new { success = true, html = RazorToString.RenderRazorView(this, "GetAll", GetAllAlbums()), message = "Deleted Successfully" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }
