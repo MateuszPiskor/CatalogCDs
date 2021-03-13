@@ -19,7 +19,7 @@ namespace CatalogCDs.Models
     public partial class Album
     {
         public int AlbumID { get; set; }
-        [Required(ErrorMessage ="Tytuł jest wymagany")]
+        [Required(ErrorMessage ="Title is required")]
         public string Title { get; set; }
         public string Genre { get; set; }
         public Nullable<int> Year { get; set; }
