@@ -46,9 +46,9 @@ function refreshAfterAddAlbum(resetUrl, showViewTab) {
         url: resetUrl,
         success: function (response) {
             $("#secondTab").html(response);
-            $('ul.nav.nav-tabs a:eq(1)').html('Add New');
+            $('#secondTabHeader').html('Add New');
             if (showViewTab)
-                $('ul.nav.nav-tabs a:eq(0)').tab('show');
+                $('#firstTabHeader').tab('show');
         }
     });
 }
@@ -59,8 +59,8 @@ function Edit(editUrl) {
         url: editUrl,
         success: function (response) {
             $("#secondTab").html(response);
-            $('ul.nav.nav-tabs a:eq(1)').html('Edit');
-            $('ul.nav.nav-tabs a:eq(1)').tab('show');
+            $('#secondTabHeader').html('Edit');
+            $('#secondTabHeader').tab('show');
         }
 
     });
