@@ -101,7 +101,7 @@ namespace CatalogCDs.Controllers
                     db.Albums.Remove(album);
                     db.SaveChanges();
                 }
-                return Json(new { success = true, html = RazorToString.RenderRazorView(this, "GetAll", GetAllAlbums()), message = "Deleted Successfully" }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = true, html = RazorToString.RenderRazorView(this, "GetAll", mapper.Map<IEnumerable<AlbumDto>>(GetAllAlbums())), message = "Deleted Successfully" }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

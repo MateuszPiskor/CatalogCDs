@@ -6,7 +6,7 @@
 }
 
 
-@using (Html.BeginForm("AddOrEdit","Album", FormMethod.Post, new { enctype="multipart/form-data", onSubmit="return ajaxPost(this);",data_resetUrl = Url.Action("AddOrEdit","Album", new { id=0 })}))
+@using (Html.BeginForm("AddOrEdit","Album", FormMethod.Post, new { enctype="multipart/form-data", onSubmit="return ajaxPost(this);",data_restUrl = Url.Action("AddOrEdit","Album", new { id=0 })}))
 {
     @Html.AntiForgeryToken()
     <div class="row">

@@ -73,7 +73,7 @@ function Delete(url) {
             type: 'POST',
             url: url,
             success: function (response) {
-                if (respone.success) {
+                if (response.success) {
                     $("#firstTab").html(response.html);
                     $.notify(response.message, "warn");
                     if (typeof activateTable != 'undefined' && $.isFunction(activateTable)) {
