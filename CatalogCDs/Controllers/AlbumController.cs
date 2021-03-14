@@ -13,20 +13,29 @@ namespace CatalogCDs.Controllers
 {
     public class AlbumController : Controller
     {
-        private readonly IAlbumRepository albumRepository;
         private readonly IMapper mapper;
 
-        public AlbumController(IAlbumRepository albumRepository, IMapper mapper)
+        public AlbumController(IMapper mapper)
         {
             this.albumRepository = albumRepository;
             this.mapper = mapper;
         }
-        // GET: Album
+
+        /// <summary>
+        /// Entry point to the app
+        /// </summary>
+        /// <returns>Initial View</returns>
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
 
+        /// <summary>
+        /// Gets list of albums
+        /// </summary>
+        /// <returns>View with all albums</returns>
+        [HttpGet]
         public ActionResult GetAll()
         {
             IEnumerable<AlbumDto> albums = mapper.Map<IEnumerable<AlbumDto>>(GetAllAlbums());
@@ -41,6 +50,11 @@ namespace CatalogCDs.Controllers
             }
         }
 
+        /// <summary>
+        /// Get album by id, or create empty
+        /// </summary>
+        /// <returns>View with album details</returns>
+        [HttpGet]
         public ActionResult AddOrEdit(int id = 0)
         {
             Album album = new Album();
@@ -54,6 +68,10 @@ namespace CatalogCDs.Controllers
             return View(mapper.Map<AlbumDto>(album));
         }
 
+        /// <summary>
+        /// Add new album to db, or edit it when exist  
+        /// </summary>
+        /// <returns>Json with infromation about operation and html code </returns>
         [HttpPost]
         public ActionResult AddOrEdit(AlbumDto album)
         {
@@ -90,6 +108,10 @@ namespace CatalogCDs.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete album from db
+        /// </summary>
+        /// <returns>Json with infromation about operation and html code</returns>
         [HttpPost]
         public ActionResult Delete(int id)
         {
