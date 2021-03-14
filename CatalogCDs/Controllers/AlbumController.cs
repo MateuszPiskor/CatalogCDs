@@ -1,4 +1,6 @@
-﻿using CatalogCDs.Data;
+﻿using AutoMapper;
+using CatalogCDs.Data;
+using CatalogCDs.DTOs;
 using CatalogCDs.Models;
 using System;
 using System.Collections.Generic;
@@ -12,10 +14,12 @@ namespace CatalogCDs.Controllers
     public class AlbumController : Controller
     {
         private readonly IAlbumRepository albumRepository;
+        private readonly IMapper mapper;
 
-        public AlbumController(IAlbumRepository albumRepository)
+        public AlbumController(IAlbumRepository albumRepository, IMapper mapper)
         {
             this.albumRepository = albumRepository;
+            this.mapper = mapper;
         }
         // GET: Album
         public ActionResult Index()
@@ -25,14 +29,15 @@ namespace CatalogCDs.Controllers
 
         public ActionResult GetAll()
         {
-            return View(GetAllAlbums());
+            IEnumerable<AlbumDto> albums = mapper.Map<IEnumerable<AlbumDto>>(GetAllAlbums());
+            return View(albums);
         }
 
         private IEnumerable<Album> GetAllAlbums()
         {
             using (DBModel db = new DBModel())
             {
-                return db.Albums.ToList<Album>();
+                return  db.Albums.ToList();
             }
         }
 
@@ -46,11 +51,11 @@ namespace CatalogCDs.Controllers
                     album = db.Albums.Where(x => x.AlbumID == id).FirstOrDefault<Album>();
                 }
             }
-            return View(album);
+            return View(mapper.Map<AlbumDto>(album));
         }
 
         [HttpPost]
-        public ActionResult AddOrEdit(Album album)
+        public ActionResult AddOrEdit(AlbumDto album)
         {
             try
             {
@@ -67,17 +72,17 @@ namespace CatalogCDs.Controllers
                 {
                     if (album.AlbumID == 0)
                     {
-                        db.Albums.Add(album);
+                        db.Albums.Add(mapper.Map<Album>(album));
                         db.SaveChanges();
                     }
                     else
                     {
-                        db.Entry(album).State = EntityState.Modified;
+                        db.Entry(mapper.Map<Album>(album)).State = EntityState.Modified;
                         db.SaveChanges();
                     }
                 }
 
-                return Json(new { success = true, html = RazorToString.RenderRazorView(this, "GetAll", GetAllAlbums()), message = "Submitted Successfully" }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = true, html = RazorToString.RenderRazorView(this, "GetAll", mapper.Map<IEnumerable<AlbumDto>>(GetAllAlbums())), message = "Submitted Successfully" }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

@@ -150,6 +150,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="DTOs\AlbumDto.cs" />
+    <Compile Include="Helpers\AlbumProfiles.cs" />
+    <Compile Include="Helpers\AutoMap.cs" />
     <Compile Include="Models\Album.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
